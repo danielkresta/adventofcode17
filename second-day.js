@@ -37,12 +37,9 @@ function getEvenlyDivisibleValues(inputArray)
         {
             for(var k = 1; k < inputDay2[i].length; k++)
             {
-                if( j !== k )
+                if( j !== k && (inputArray[i][j] % inputArray[i][k]) === 0 )
                 {
-                    if( (inputArray[i][j] % inputArray[i][k]) === 0)
-                    {
-                        checksum += inputArray[i][j] / inputArray[i][k];
-                    }
+                    checksum += inputArray[i][j] / inputArray[i][k];
                 }
             }
         }
