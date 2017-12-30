@@ -49,4 +49,4 @@ function getEvenlyDivisibleValues(inputArray)
 
 var result2_1 = getChecksum(inputDay2);
 var result2_2 = getEvenlyDivisibleValues(inputDay2);
-console.log("Day 2, first part: " + result2_1 + ", second part " + result2_2);
+console.log("Day 2, first part: " + result2_1 + ", second part: " + result2_2);

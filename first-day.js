@@ -15,4 +15,4 @@ function getCaptcha(input, digitDistance)
 
 var result1_1 = getCaptcha(inputDay1, 1);
 var result1_2 = getCaptcha(inputDay1, inputDay1.length/2);
-console.log("Day 1, first part: " + result1_1 + ", second part " + result1_2);
+console.log("Day 1, first part: " + result1_1 + ", second part: " + result1_2);

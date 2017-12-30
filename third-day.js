@@ -1,7 +1,7 @@
-var input = 312051;
+var inputDay3 = 312051;
 
 // Finding the closest odd sqrt
-var closestSqrt = Math.ceil(Math.sqrt(input));
+var closestSqrt = Math.ceil(Math.sqrt(inputDay3));
 if (!(closestSqrt % 2))
 {
     closestSqrt++;
@@ -35,10 +35,10 @@ var distance = {
     toMidpoint: function() {
         return Math.min
         (
-           Math.abs( input - middlepoint.bottom.val() ),
-           Math.abs( input - middlepoint.left.val() ),
-           Math.abs( input - middlepoint.top.val() ),
-           Math.abs( input - middlepoint.right.val() )
+           Math.abs( inputDay3 - middlepoint.bottom.val() ),
+           Math.abs( inputDay3 - middlepoint.left.val() ),
+           Math.abs( inputDay3 - middlepoint.top.val() ),
+           Math.abs( inputDay3 - middlepoint.right.val() )
         );
     },
     full: function() {return ( this.fromMidpoint() + this.toMidpoint() );}
@@ -126,7 +126,7 @@ field[xStart][yStart] = 1;
 var movesInDirectionCounter = 0;
 var currentSum = 0;
 
-while(currentSum < input)
+while(currentSum < inputDay3)
 {
     moveCoords(coordinates, direction);
     movesInDirectionCounter++;
@@ -150,4 +150,4 @@ while(currentSum < input)
     //console.log(currentSum + " at " + coordinates.x +  "." + coordinates.y);
 }
 
-console.log("Day 3, first part: " + distance.full() + ", second part " + currentSum);
+console.log("Day 3, first part: " + distance.full() + ", second part: " + currentSum);
