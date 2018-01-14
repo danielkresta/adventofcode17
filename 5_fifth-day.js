@@ -6,31 +6,24 @@ var iteration = {
 var pointer = 0;
 var tempInputArray = inputDay5.slice();
 
-while(!outOfBounds)
-{
+while (!outOfBounds) {
     pointer += tempInputArray[pointer]++;
     iteration.first++;
-    if( (pointer < 0) || (pointer >= tempInputArray.length) )
-    {
+    if ((pointer < 0) || (pointer >= tempInputArray.length)) {
         outOfBounds = true;
     }
 }
 
 pointer = 0;
 outOfBounds = false;
-while(!outOfBounds)
-{
-    if( inputDay5[pointer] >= 3)
-    {
+while (!outOfBounds) {
+    if (inputDay5[pointer] >= 3) {
         pointer += inputDay5[pointer]--;
-    }
-    else
-    {
+    } else {
         pointer += inputDay5[pointer]++;
     }
     iteration.second++;
-    if( (pointer < 0) || (pointer >= inputDay5.length) )
-    {
+    if ((pointer < 0) || (pointer >= inputDay5.length)) {
         outOfBounds = true;
     }
 }

@@ -15,30 +15,23 @@ var inputDay2 = [
     [492, 1179, 154, 1497, 819, 2809, 2200, 2324, 157, 2688, 1518, 168, 2767, 2369, 2583, 173],
     [286, 2076, 243, 939, 399, 451, 231, 2187, 2295, 453, 1206, 2468, 2183, 230, 714, 681],
     [3111, 2857, 2312, 3230, 149, 3082, 408, 1148, 2428, 134, 147, 620, 128, 157, 492, 2879]
-]
+];
 
-function getChecksum(inputArray)
-{
+function getChecksum(inputArray) {
     var checksum = 0;
-    for(var i = 0; i < inputDay2.length; i++)
-    {
-        checksum += (Math.max.apply(Math, inputDay2[i]) - Math.min.apply(Math, inputDay2[i]));
+    for (var i = 0; i < inputArray.length; i++) {
+        checksum += (Math.max.apply(Math, inputArray[i]) - Math.min.apply(Math, inputArray[i]));
     }
     return checksum;
 }
 
-function getEvenlyDivisibleValues(inputArray)
-{
+function getEvenlyDivisibleValues(inputArray) {
     var checksum = 0;
-    for(var i = 0; i < inputDay2.length; i++)
-    {
+    for (var i = 0; i < inputDay2.length; i++) {
         inputArray[i].sort(function(a, b){return b-a});
-        for(var j = 0; j < inputDay2[i].length; j++)
-        {
-            for(var k = 1; k < inputDay2[i].length; k++)
-            {
-                if( j !== k && (inputArray[i][j] % inputArray[i][k]) === 0 )
-                {
+        for (var j = 0; j < inputDay2[i].length; j++) {
+            for (var k = 1; k < inputDay2[i].length; k++) {
+                if ( j !== k && (inputArray[i][j] % inputArray[i][k]) === 0 ) {
                     checksum += inputArray[i][j] / inputArray[i][k];
                 }
             }

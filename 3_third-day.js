@@ -2,64 +2,59 @@ var inputDay3 = 312051;
 
 // Finding the closest odd sqrt
 var closestSqrt = Math.ceil(Math.sqrt(inputDay3));
-if (!(closestSqrt % 2))
-{
+if (!(closestSqrt % 2)) {
     closestSqrt++;
 }
 
 // Calculating the distance from the corner to the middle point of the square side
-var sideSize = (Math.pow(closestSqrt, 2) - Math.pow((closestSqrt - 2), 2) )/4;
+var sideSize = (Math.pow(closestSqrt, 2) - Math.pow((closestSqrt - 2), 2)) / 4;
 
 // Calculating all four middlepoints
 var middlepoint = {
     bottom: {
         coef: 0.5,
-        val: function() {return ( Math.pow(closestSqrt, 2) - (this.coef * sideSize) ); }
+        val: function () {return (Math.pow(closestSqrt, 2) - (this.coef * sideSize)); }
     },
     left: {
         coef: 1.5,
-        val: function() {return ( Math.pow(closestSqrt, 2) - (this.coef * sideSize) ); }
+        val: function () {return (Math.pow(closestSqrt, 2) - (this.coef * sideSize)); }
     },
     top: {
         coef: 2.5,
-        val: function() {return ( Math.pow(closestSqrt, 2) - (this.coef * sideSize) ); }
+        val: function () {return (Math.pow(closestSqrt, 2) - (this.coef * sideSize)); }
     },
     right: {
         coef: 3.5,
-        val: function() {return ( Math.pow(closestSqrt, 2) - (this.coef * sideSize) ); }
-    } 
-}
+        val: function () {return (Math.pow(closestSqrt, 2) - (this.coef * sideSize)); }
+    }
+};
 
 var distance = {
-    fromMidpoint: function() {return ( ( closestSqrt-1 )/2 );},
-    toMidpoint: function() {
-        return Math.min
-        (
-           Math.abs( inputDay3 - middlepoint.bottom.val() ),
-           Math.abs( inputDay3 - middlepoint.left.val() ),
-           Math.abs( inputDay3 - middlepoint.top.val() ),
-           Math.abs( inputDay3 - middlepoint.right.val() )
+    fromMidpoint: function () {return ((closestSqrt - 1) / 2); },
+    toMidpoint: function () {
+        return Math.min(
+            Math.abs(inputDay3 - middlepoint.bottom.val()),
+            Math.abs(inputDay3 - middlepoint.left.val()),
+            Math.abs(inputDay3 - middlepoint.top.val()),
+            Math.abs(inputDay3 - middlepoint.right.val())
         );
     },
-    full: function() {return ( this.fromMidpoint() + this.toMidpoint() );}
-}
+    full: function () {return (this.fromMidpoint() + this.toMidpoint()); }
+};
 
 // --PART TWO--
 var fieldWidth = 20;
 var fieldHeight = 20;
 // Create 20x20 matrix filled with zeros
 var field = new Array(fieldWidth);
-for (var i = 0; i < fieldWidth; i++)
-{
+for (var i = 0; i < fieldWidth; i++) {
     field[i] = new Array(fieldHeight);
     field[i].fill(0);
 }
 
-function changeDirection(inputDirection)
-{
+function changeDirection(inputDirection) {
     var outputDirection;
-    switch(inputDirection)
-    {
+    switch(inputDirection) {
         case "right":
             outputDirection = "up";
             break;
@@ -78,10 +73,8 @@ function changeDirection(inputDirection)
     return outputDirection;
 }
 
-function moveCoords(coordinates, direction)
-{
-    switch(direction)
-    {
+function moveCoords(coordinates, direction) {
+    switch(direction) {
         case "right":
             coordinates.x++;
             break;
@@ -98,14 +91,11 @@ function moveCoords(coordinates, direction)
     }
 }
 
-function calculateAroundCoords(field, coordinates)
-{
+function calculateAroundCoords(field, coordinates) {
     var sum;
     sum = 0;
-    for(var i = 0; i < 3; i++)
-    {
-        for(var j = 0; j < 3; j++)
-        {
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
             sum += field[coordinates.x - 1 + i][coordinates.y - 1 + j];
         }
     }
@@ -126,21 +116,16 @@ field[xStart][yStart] = 1;
 var movesInDirectionCounter = 0;
 var currentSum = 0;
 
-while(currentSum < inputDay3)
-{
+while (currentSum < inputDay3){
     moveCoords(coordinates, direction);
     movesInDirectionCounter++;
-    if(movesInDirectionCounter == changeAfterSteps)
-    {
+    if (movesInDirectionCounter == changeAfterSteps) {
         direction = changeDirection(direction);
         movesInDirectionCounter = 0;
         // Increase the number of steps in every other iteration
-        if(firstRun)
-        {
+        if (firstRun) {
             firstRun = false;
-        }
-        else
-        {
+        } else {
             changeAfterSteps++;
             firstRun = true;
         }

@@ -1,30 +1,14 @@
-
 var instruction = [];
 var registers = [];
 var maxReg = 0;
 var highestReg = 0;
 
-instruction = parseInput(inputDay8, instruction);
-for(var i = 0; i < instruction.length; i++)
-{
-    executeCommand(instruction, i, registers);
-    maxReg = findMaxRegIndex(registers);
-    if ( registers[maxReg].val > highestReg )
-    {
-        highestReg = registers[maxReg].val;
-    }
-}
-console.log("Day 6, first part: " + registers[maxReg].val + ", second part: " + highestReg);
-
-function parseInput(inputString, instruction)
-{
+function parseInput(inputString, instruction) {
     var linedString = inputString.split("\n");
     var line;
-    for(var i = 1; i < linedString.length-1; i++)
-    {
+    for (var i = 1; i < linedString.length-1; i++) {
         line = linedString[i].split(" ");
-        instruction.push(
-            {
+        instruction.push( {
                 register: line[0],
                 increment: ( line[1] === "inc" ),
                 amount: Number(line[2]),
@@ -39,25 +23,20 @@ function parseInput(inputString, instruction)
     return instruction;
 }
 
-function executeCommand(instruction, line, registers)
-{
+function executeCommand(instruction, line, registers) {
     var registerToChangeIndex = findRegister(instruction[line].register, registers);
     var registerToCompare = findRegister(instruction[line].condition.registerToCompare, registers);
     
-    if ( registerToChangeIndex === -1 )
-    {
-        registers.push(
-            {
+    if (registerToChangeIndex === -1) {
+        registers.push( {
                 name: instruction[line].register,
                 val: 0
             }
         );
         registerToChangeIndex = registers.length-1;
     }
-    if ( registerToCompare === -1 )
-    {
-        registers.push(
-            {
+    if (registerToCompare === -1) {
+        registers.push( {
                 name: instruction[line].condition.registerToCompare,
                 val: 0
             }
@@ -65,14 +44,11 @@ function executeCommand(instruction, line, registers)
         registerToCompare = registers.length-1;
     }
     
-    if( evalCondition(registers[registerToCompare].val, instruction[line].condition.amountToCompare, instruction[line].condition.operation) )
-    {
-        if( instruction[line].increment )
-        {
+    if (evalCondition(registers[registerToCompare].val, instruction[line].condition.amountToCompare, instruction[line].condition.operation) ) {
+        if (instruction[line].increment) {
             registers[registerToChangeIndex].val += instruction[line].amount;
         }
-        else
-        {
+        else {
             registers[registerToChangeIndex].val -= instruction[line].amount;
         }
     }
@@ -80,22 +56,17 @@ function executeCommand(instruction, line, registers)
     return registers;
 }
 
-function findRegister(name, registers)
-{
-    for(var i = 0; i < registers.length; i++)
-    {
-        if( registers[i].name === name )
-        {
+function findRegister(name, registers) {
+    for (var i = 0; i < registers.length; i++) {
+        if (registers[i].name === name) {
             return i;
         }
     }
     return -1;
 }
 
-function evalCondition(x, y, condition)
-{
-    switch(condition)
-    {
+function evalCondition(x, y, condition) {
+    switch (condition) {
         case ("=="): return(x == y);
         case ("!="): return(x != y);
         case (">="): return(x >= y);
@@ -105,19 +76,26 @@ function evalCondition(x, y, condition)
     }
 }
 
-function findMaxRegIndex(inputArray)
-{
+function findMaxRegIndex(inputArray) {
     var index = 0;
     var maxValue = 0;
     
-    for(var i = 0; i < inputArray.length; i++)
-    {
-        if(inputArray[i].val > maxValue)
-        {
+    for (var i = 0; i < inputArray.length; i++) {
+        if (inputArray[i].val > maxValue) {
             maxValue = inputArray[i].val;
             index = i;
         }
     }
-    
     return index;
 }
+
+
+instruction = parseInput(inputDay8, instruction);
+for (var i = 0; i < instruction.length; i++) {
+    executeCommand(instruction, i, registers);
+    maxReg = findMaxRegIndex(registers);
+    if (registers[maxReg].val > highestReg) {
+        highestReg = registers[maxReg].val;
+    }
+}
+console.log("Day 6, first part: " + registers[maxReg].val + ", second part: " + highestReg);
