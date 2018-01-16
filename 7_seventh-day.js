@@ -157,5 +157,5 @@ while (!foundBottom) {
     }
     currentIndex = nextIndex;
 }
-console.log("Day 6, first part: " + initialProgram + ", ");
+console.log("Day 7, first part: " + initialProgram + ", ");
 calculateNext(initialProgram, tower);

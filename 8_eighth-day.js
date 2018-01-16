@@ -89,7 +89,6 @@ function findMaxRegIndex(inputArray) {
     return index;
 }
 
-
 instruction = parseInput(inputDay8, instruction);
 for (var i = 0; i < instruction.length; i++) {
     executeCommand(instruction, i, registers);
@@ -98,4 +97,4 @@ for (var i = 0; i < instruction.length; i++) {
         highestReg = registers[maxReg].val;
     }
 }
-console.log("Day 6, first part: " + registers[maxReg].val + ", second part: " + highestReg);
+console.log("Day 8, first part: " + registers[maxReg].val + ", second part: " + highestReg);
